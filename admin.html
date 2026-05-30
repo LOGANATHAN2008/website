@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminOS - Loganathan M</title>
+    
+    <!-- External Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- App CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- ================= LOGIN SCREEN ================= -->
+    <div id="login-screen" class="hide">
+        <div class="auth-split">
+
+            <!-- LEFT: Brand Panel -->
+            <div class="auth-left">
+                <!-- Animated background blobs -->
+                <div class="auth-blob auth-blob-1"></div>
+                <div class="auth-blob auth-blob-2"></div>
+                <div class="auth-blob auth-blob-3"></div>
+
+                <!-- Floating rings -->
+                <div class="auth-ring auth-ring-1"></div>
+                <div class="auth-ring auth-ring-2"></div>
+                <div class="auth-ring auth-ring-3"></div>
+
+                <!-- Dots grid -->
+                <div class="auth-dots auth-dots-tl"></div>
+                <div class="auth-dots auth-dots-br"></div>
+
+                <!-- Floating orbs -->
+                <div class="auth-orb auth-orb-1"></div>
+                <div class="auth-orb auth-orb-2"></div>
+                <div class="auth-orb auth-orb-3"></div>
+
+                <!-- Brand Content -->
+                <div class="auth-brand-content">
+                    <img src="logo.png" alt="Logo" class="auth-brand-logo" onerror="this.style.display='none'">
+                    <h1 class="auth-brand-title">AdminOS</h1>
+                    <p class="auth-brand-sub">Loganathan M · Pro Edition</p>
+                    <div class="auth-brand-divider"></div>
+                    <p class="auth-brand-desc">Your all-in-one business dashboard.<br>Manage orders, clients, invoices & more.</p>
+
+                    <!-- Stats row -->
+                    <div class="auth-stats">
+                        <div class="auth-stat"><span>📦</span><p>Orders</p></div>
+                        <div class="auth-stat"><span>🧾</span><p>Invoices</p></div>
+                        <div class="auth-stat"><span>🤖</span><p>AI Tools</p></div>
+                        <div class="auth-stat"><span>📊</span><p>Analytics</p></div>
+                    </div>
+                </div>
+
+                <!-- Bottom credit -->
+                <div class="auth-left-footer">🌐 web.loganathan.site</div>
+            </div>
+
+            <!-- RIGHT: Login Form Panel -->
+            <div class="auth-right">
+                <div class="auth-form-box">
+                    <!-- Logo (mobile only) -->
+                    <img src="logo.png" alt="Logo" class="auth-mobile-logo" onerror="this.style.display='none'">
+
+                    <h2 class="auth-form-title">Welcome Back 👋</h2>
+                    <p class="auth-form-sub">Sign in to your admin dashboard</p>
+
+                    <!-- Sign In Form -->
+                    <form id="signin-form" class="auth-form" style="display:flex;flex-direction:column;gap:14px">
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-envelope auth-input-icon"></i>
+                            <input type="email" id="signin-email" class="auth-input" placeholder="Email address" required>
+                        </div>
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-lock auth-input-icon"></i>
+                            <input type="password" id="signin-password" class="auth-input" placeholder="Password" required>
+                            <button type="button" class="auth-pwd-toggle" onclick="togglePwd('signin-password',this)">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="signin-error" class="auth-err hide"></div>
+                        <button class="auth-submit-btn" type="submit">
+                            <span>Sign In</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <!-- Sign Up Form -->
+                    <form id="signup-form" class="auth-form hide" style="display:flex;flex-direction:column;gap:14px">
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-user auth-input-icon"></i>
+                            <input type="text" id="signup-username" class="auth-input" placeholder="Full Name" required>
+                        </div>
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-envelope auth-input-icon"></i>
+                            <input type="email" id="signup-email" class="auth-input" placeholder="Email address" required>
+                        </div>
+                        <div class="auth-input-group">
+                            <i class="fa-solid fa-lock auth-input-icon"></i>
+                            <input type="password" id="signup-password" class="auth-input" placeholder="Create password" required>
+                            <button type="button" class="auth-pwd-toggle" onclick="togglePwd('signup-password',this)">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="signup-error" class="auth-err hide"></div>
+                        <button class="auth-submit-btn" type="submit">
+                            <span>Create Account</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <p class="auth-switch-text">Already have an account? <a href="#" class="login-trigger auth-link">Sign In</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= DASHBOARD SCREEN ================= -->
+    <div id="dashboard-screen" class="hide">
+        <div class="glow-orb"></div>
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="Logo" class="logo-icon-img" style="width: 32px; height: 32px; object-fit: contain; filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.4));">
+                    <div class="logo-text"><h3>AdminOS</h3><p>Pro Edition</p></div>
+                </div>
+                
+                <div class="sidebar-nav">
+                    <p class="nav-label">Menu</p>
+                    <button class="nav-btn active" data-tab="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+                    <button class="nav-btn" data-tab="orders"><i data-lucide="shopping-cart"></i> Orders <span class="nav-badge" id="nav-badge-orders">0</span></button>
+                    <button class="nav-btn" data-tab="clients"><i data-lucide="users"></i> Clients</button>
+                    <button class="nav-btn" data-tab="reviews"><i data-lucide="message-square"></i> Reviews</button>
+                    <button class="nav-btn" data-tab="analytics"><i data-lucide="bar-chart-3"></i> Analytics</button>
+                    <button class="nav-btn" data-tab="services"><i data-lucide="package"></i> Services</button>
+                    <button class="nav-btn ai-glow-btn" data-tab="ai"><i data-lucide="sparkles"></i> AI Assistant</button>
+
+                    <p class="nav-label">Tools</p>
+                    <button class="nav-btn" data-tab="kanban" style="color:#f59e0b"><i data-lucide="kanban"></i> Project Board</button>
+                    <button class="nav-btn" data-tab="invoice" style="color:#10b981"><i data-lucide="file-invoice"></i> Invoice Maker</button>
+                    <button class="nav-btn" data-tab="tasks" style="color:#ec4899"><i data-lucide="check-square"></i> Task Manager</button>
+
+                    <p class="nav-label">System</p>
+                    <button class="nav-btn" data-tab="profile"><i data-lucide="user-circle"></i> Profile</button>
+                    <button class="nav-btn" data-tab="settings"><i data-lucide="settings"></i> Settings</button>
+                    <button class="nav-btn" data-tab="maintenance-mode" style="padding-left: 28px; font-size: 13px;"><i data-lucide="shield-alert" style="width: 14px; height: 14px;"></i> Maintenance Mode</button>
+                    <button class="nav-btn" data-tab="logs"><i data-lucide="terminal"></i> Activity Logs</button>
+                </div>
+
+                <div class="sidebar-footer">
+                    <button id="logout-btn" class="logout-btn"><i data-lucide="log-out"></i> Logout</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MOBILE OVERLAY -->
+        <div class="mobile-overlay hide" id="mobile-overlay"></div>
+
+        <!-- MAIN AREA -->
+        <main class="main">
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="topbar-left" style="display:flex;align-items:center;gap:12px">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn"><i data-lucide="menu"></i></button>
+                    <div class="clock-card">
+                        <span class="clock-time" id="live-time"></span>
+                        <span class="clock-date" id="live-date"></span>
+                    </div>
+                </div>
+                
+                <div style="display:flex;align-items:center;gap:12px">
+                    <div class="notif-btn" id="notif-trigger">
+                    <i data-lucide="bell" style="width:18px;height:18px;color:#9ca3af"></i>
+                    <div class="notif-dot hide" id="notif-dot"></div>
+                    
+                    <div class="notif-dropdown hide" id="notif-dropdown">
+                        <div class="notif-header">
+                            <h3>Notifications</h3>
+                            <div class="notif-actions">
+                                <button onclick="markAllNotificationsRead()">Mark All Read</button>
+                                <button onclick="clearAllNotifications()">Clear</button>
+                            </div>
+                        </div>
+                        <div class="notif-body" id="notif-list">
+                            <!-- Notifications will be injected here -->
+                            <div class="no-notifs">No new notifications</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="avatar-btn">
+                    Loganathan <img src="LOGANATHAN.jpeg">
+                </div>
+                </div>
+            </header>
+
+            <!-- CONTENT PAGES -->
+            <div class="content">
+                
+                <!-- PAGE: DASHBOARD -->
+                <div id="page-dashboard" class="page">
+                    <div class="page-header">
+                        <div>
+                            <h1 class="page-title">👋 Welcome Back, Loganathan M</h1>
+                            <p class="page-sub">Manage website orders, clients, reviews, pricing and business growth.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="g-card stat-card"><div class="stat-glow bg-blue-500"></div><p class="stat-label">Total Orders</p><h3 class="stat-value" id="stat-orders">0</h3><div class="stat-meta"><i data-lucide="trending-up" style="width:14px"></i> +12% this week</div><div class="stat-icon bg-blue-500/20 text-blue-400"><i data-lucide="shopping-cart"></i></div></div>
+                        <div class="g-card stat-card"><div class="stat-glow bg-orange-500"></div><p class="stat-label">Pending Orders</p><h3 class="stat-value" id="stat-pending">0</h3><div class="stat-meta"><i data-lucide="clock" style="width:14px;color:#fb923c"></i> <span style="color:#fb923c">Needs attention</span></div><div class="stat-icon bg-orange-500/20 text-orange-400"><i data-lucide="clock"></i></div></div>
+                        <div class="g-card stat-card"><div class="stat-glow bg-emerald-500"></div><p class="stat-label">Total Revenue</p><h3 class="stat-value" id="stat-revenue">$0</h3><div class="stat-meta"><i data-lucide="trending-up" style="width:14px"></i> +24.8% this month</div><div class="stat-icon bg-emerald-500/20 text-emerald-400"><i data-lucide="dollar-sign"></i></div></div>
+                        <div class="g-card stat-card"><div class="stat-glow bg-purple-500"></div><p class="stat-label">Completed Orders</p><h3 class="stat-value" id="stat-completed">0</h3><div class="stat-meta"><i data-lucide="trending-up" style="width:14px"></i> +18.2% this week</div><div class="stat-icon bg-purple-500/20 text-purple-400"><i data-lucide="check-circle"></i></div></div>
+                        <div class="g-card stat-card"><div class="stat-glow bg-pink-500"></div><p class="stat-label">Active Clients</p><h3 class="stat-value" id="stat-clients">0</h3><div class="stat-meta"><i data-lucide="trending-up" style="width:14px"></i> +8.4% this month</div><div class="stat-icon bg-pink-500/20 text-pink-400"><i data-lucide="users"></i></div></div>
+                        <div class="g-card stat-card"><div class="stat-glow bg-yellow-500"></div><p class="stat-label">Total Reviews</p><h3 class="stat-value" id="stat-reviews">0</h3><div class="stat-meta"><i data-lucide="star" style="width:14px"></i> 4.9 Average Rating</div><div class="stat-icon bg-yellow-500/20 text-yellow-400"><i data-lucide="message-square"></i></div></div>
+                    </div>
+                </div>
+
+                <!-- PAGE: ORDERS -->
+                <div id="page-orders" class="page hide">
+                    <div class="page-header">
+                        <h1 class="page-title">Recent Orders</h1>
+                        <div class="search-bar"><i data-lucide="search" style="width:16px;color:#9ca3af"></i><input type="text" placeholder="Search orders..."></div>
+                    </div>
+                    <div class="g-card tbl-wrap">
+                        <table>
+                            <thead><tr><th>Order ID</th><th>Client</th><th>Subject</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+                            <tbody id="orders-body"><tr><td colspan="6" style="text-align:center">Loading orders...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PAGE: CLIENTS -->
+                <div id="page-clients" class="page hide">
+                    <div class="page-header"><h1 class="page-title">Client Management</h1></div>
+                    <div class="clients-grid" id="clients-grid"></div>
+                </div>
+
+                <!-- PAGE: REVIEWS -->
+                <div id="page-reviews" class="page hide">
+                    <div class="page-header"><h1 class="page-title">Review Moderation</h1></div>
+                    <div class="reviews-grid" id="reviews-grid"></div>
+                </div>
+                
+                <!-- PAGE: ANALYTICS -->
+                <div id="page-analytics" class="page hide">
+                    <div class="page-header"><h1 class="page-title">Business Analytics</h1></div>
+                    <div class="charts-grid">
+                        <div class="g-card chart-card">
+                            <h3 class="chart-title">Revenue Growth</h3>
+                            <div style="height:250px"><canvas id="revenueChart"></canvas></div>
+                        </div>
+                        <div class="g-card chart-card">
+                            <h3 class="chart-title">Client Acquisition</h3>
+                            <div style="height:250px"><canvas id="clientsChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: SERVICES -->
+                <div id="page-services" class="page hide">
+                    <div class="page-header"><h1 class="page-title">Services & Pricing Manager</h1></div>
+                    <div class="services-grid-admin" id="services-grid-admin">
+                        <div class="g-card service-admin-card">
+                            <div class="service-admin-header">
+                                <h3>Landing Page</h3>
+                                <span class="status-badge srv-active" id="badge-landing">Online</span>
+                            </div>
+                            <p class="service-admin-desc">Single page premium layout with responsive sections.</p>
+                            <div class="service-admin-controls">
+                                <div class="form-group">
+                                    <label>Price ($)</label>
+                                    <input type="number" class="service-price-input" value="199" id="srv-price-landing">
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="service-status-select" id="srv-status-landing" onchange="updateServiceBadge('landing')">
+                                        <option value="online" selected>Online</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="service-update-btn" onclick="saveServiceConfig('landing')">Update Service</button>
+                        </div>
+
+                        <div class="g-card service-admin-card">
+                            <div class="service-admin-header">
+                                <h3>Professional Portfolio</h3>
+                                <span class="status-badge srv-active" id="badge-portfolio">Online</span>
+                            </div>
+                            <p class="service-admin-desc">Multipage/Single-page detailed resume with custom domain.</p>
+                            <div class="service-admin-controls">
+                                <div class="form-group">
+                                    <label>Price ($)</label>
+                                    <input type="number" class="service-price-input" value="299" id="srv-price-portfolio">
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="service-status-select" id="srv-status-portfolio" onchange="updateServiceBadge('portfolio')">
+                                        <option value="online" selected>Online</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="service-update-btn" onclick="saveServiceConfig('portfolio')">Update Service</button>
+                        </div>
+
+                        <div class="g-card service-admin-card">
+                            <div class="service-admin-header">
+                                <h3>Business E-Commerce</h3>
+                                <span class="status-badge srv-active" id="badge-ecommerce">Online</span>
+                            </div>
+                            <p class="service-admin-desc">Full online store setup with payment integrations.</p>
+                            <div class="service-admin-controls">
+                                <div class="form-group">
+                                    <label>Price ($)</label>
+                                    <input type="number" class="service-price-input" value="499" id="srv-price-ecommerce">
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="service-status-select" id="srv-status-ecommerce" onchange="updateServiceBadge('ecommerce')">
+                                        <option value="online" selected>Online</option>
+                                        <option value="maintenance">Maintenance</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="service-update-btn" onclick="saveServiceConfig('ecommerce')">Update Service</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: PROFILE -->
+                <div id="page-profile" class="page hide">
+                    <div style="max-width:800px;margin:0 auto">
+                        <div class="g-card">
+                            <div class="profile-banner"></div>
+                            <div class="profile-body">
+                                <img src="LOGANATHAN.jpeg" class="profile-img">
+                                <h2 class="profile-name">Loganathan M</h2>
+                                <p class="profile-role">Founder & Web Developer</p>
+                                <div class="profile-stats">
+                                    <div class="p-stat"><p class="p-stat-val" id="profile-stat-orders">—</p><p class="p-stat-label">Orders</p></div>
+                                    <div class="p-stat"><p class="p-stat-val" id="profile-stat-rev">—</p><p class="p-stat-label">Revenue</p></div>
+                                    <div class="p-stat"><p class="p-stat-val" id="profile-stat-reviews">—</p><p class="p-stat-label">Reviews</p></div>
+                                </div>
+                                <div style="display:flex;justify-content:center;gap:12px">
+                                    <button class="profile-btn edit" onclick="document.querySelectorAll('.page').forEach(p=>p.classList.add('hide')); document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active')); document.getElementById('page-edit-profile').classList.remove('hide');">Edit Profile</button>
+                                    <button class="profile-btn" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#fff" onclick="document.querySelector('.nav-btn[data-tab=\'settings\']').click();">
+                                        <i data-lucide="settings" style="width:16px;height:16px;margin-bottom:-3px;margin-right:6px"></i>Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- PAGE: SETTINGS -->
+                <div id="page-settings" class="page hide">
+                    <div class="page-header"><h1 class="page-title">Settings</h1></div>
+                    <div style="max-width:600px">
+                        <div class="g-card settings-card">
+                            <h3 class="settings-title">Business Details</h3>
+                            <div class="form-group"><label>Business Name</label><input type="text" value="Loganathan Web Services" readonly></div>
+                            <div class="form-group"><label>Contact Email</label><input type="text" value="admin@loganathan.site" readonly></div>
+                            <div class="form-group"><label>Website Link</label><input type="text" value="https://loganathan.site" readonly></div>
+                        </div>
+                        <div class="g-card settings-card">
+                            <h3 class="settings-title">Global Site Control</h3>
+                            <div class="ep-toggle-row" style="border-bottom:none; padding:0;">
+                                <div>
+                                    <p class="ep-toggle-title">Under Maintenance Mode</p>
+                                    <p class="ep-toggle-desc" style="margin-top: 4px;">Enable to put the main website under maintenance.</p>
+                                </div>
+                                <label class="ep-switch">
+                                    <input type="checkbox" id="settings-maintenance">
+                                    <span class="ep-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="g-card settings-card">
+                            <h3 class="settings-title">Theme Preference</h3>
+                            <div class="theme-btns">
+                                <button class="theme-btn active"><i data-lucide="moon" style="margin-bottom:8px"></i><br>Dark Mode</button>
+                                <button class="theme-btn"><i data-lucide="sun" style="margin-bottom:8px"></i><br>Light Mode</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: MAINTENANCE MODE -->
+                <div id="page-maintenance-mode" class="page hide">
+                    <div class="page-header">
+                        <div>
+                            <h1 class="page-title">🛡 Maintenance Mode</h1>
+                            <p class="page-sub">Put your public website offline while making system improvements</p>
+                        </div>
+                    </div>
+                    <div style="max-width:600px">
+                        <div class="g-card settings-card" style="position: relative; overflow: hidden; padding: 28px;">
+                            <div class="stat-glow" style="position: absolute; width: 150px; height: 150px; border-radius: 50%; filter: blur(40px); background: radial-gradient(circle, var(--primary) 0%, transparent 70%); top: -40px; right: -40px; opacity: 0.5;"></div>
+                            
+                            <h3 class="settings-title" style="font-size: 16px; font-weight: 700; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="shield-alert" style="color: var(--primary); width: 18px; height: 18px;"></i> Global Site Control
+                            </h3>
+                            
+                            <div class="ep-toggle-row" style="border-bottom:none; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <p class="ep-toggle-title" style="font-size: 15px; font-weight: 700; color: #fff;">Under Maintenance Mode</p>
+                                    <p class="ep-toggle-desc" style="margin-top: 4px; font-size:12px; color:#6b7280; line-height: 1.4;">Enable to put the main website under maintenance immediately.</p>
+                                </div>
+                                <div style="display:flex; align-items:center; gap:12px;">
+                                    <span id="maintenance-toggle-label" style="font-size: 14px; font-weight: 700; color: #f87171;">OFF</span>
+                                    <label class="ep-switch">
+                                        <input type="checkbox" id="maintenance-global-toggle">
+                                        <span class="ep-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="g-card settings-card" style="margin-top: 20px; padding: 28px;">
+                            <h3 class="settings-title" style="font-size: 16px; font-weight: 700; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="info" style="color: var(--secondary); width: 18px; height: 18px;"></i> Live Status Details
+                            </h3>
+                            <div style="font-size: 13px; color: #9ca3af; line-height: 1.6; display: flex; flex-direction: column; gap: 10px;">
+                                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:8px;">
+                                    <span>Database Synchronization</span>
+                                    <span style="color: #34d399; font-weight: 700;">Connected (Real-time)</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:8px;">
+                                    <span>Allowed Routes</span>
+                                    <span style="color: #60a5fa; font-weight: 600;">/admin, /admin/login, /admin/dashboard</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; padding-bottom:4px;">
+                                    <span>Blocked Routes</span>
+                                    <span style="color: #f87171; font-weight: 600;">All Public Facing Pages</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: AI ASSISTANT -->
+                <div id="page-ai" class="page hide">
+                    <div class="page-header">
+                        <h1 class="page-title">✦ AI Business Assistant</h1>
+                        <button class="ai-clear-btn" onclick="clearAiChat()" title="Clear chat"><i data-lucide="trash-2"></i></button>
+                    </div>
+                    <!-- Quick Prompt Chips -->
+                    <div class="ai-chips">
+                        <button class="ai-chip" onclick="sendAiPrompt('Write a quotation email for a website project')">
+                            <i data-lucide="file-text"></i> Quotation Email
+                        </button>
+                        <button class="ai-chip" onclick="sendAiPrompt('Suggest pricing for my services')">
+                            <i data-lucide="tag"></i> Pricing Ideas
+                        </button>
+                        <button class="ai-chip" onclick="sendAiPrompt('Write a follow-up message to a client who has not responded')">
+                            <i data-lucide="mail"></i> Follow-up Message
+                        </button>
+                        <button class="ai-chip" onclick="sendAiPrompt('How to get more clients for my web development business?')">
+                            <i data-lucide="users"></i> Get Clients
+                        </button>
+                        <button class="ai-chip" onclick="sendAiPrompt('Write a short client review request message')">
+                            <i data-lucide="star"></i> Review Request
+                        </button>
+                        <button class="ai-chip" onclick="sendAiPrompt('What are the best SEO strategies for my website?')">
+                            <i data-lucide="search"></i> SEO Strategy
+                        </button>
+                    </div>
+                    <!-- Chat Window -->
+                    <div class="ai-chat-window" id="ai-chat-window">
+                        <div class="ai-welcome">
+                            <div class="ai-welcome-icon">✦</div>
+                            <h3>Your AI Business Assistant</h3>
+                            <p>Ask me anything — quotations, client emails, pricing, SEO tips, or business ideas!</p>
+                        </div>
+                    </div>
+                    <!-- Input Row -->
+                    <div class="ai-input-row">
+                        <textarea id="ai-input" class="ai-textarea" placeholder="Ask anything about your business..." rows="1" onkeydown="handleAiKey(event)"></textarea>
+                        <button class="ai-send-btn" id="ai-send-btn" onclick="sendAiMessage()">
+                            <i data-lucide="send"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PAGE: KANBAN BOARD -->
+                <div id="page-kanban" class="page hide">
+                    <div class="page-header">
+                        <div><h1 class="page-title">🗂 Project Board</h1><p class="page-sub">Drag projects through stages — track every client delivery</p></div>
+                        <button class="kb-add-btn" onclick="openAddProjectModal()"><i data-lucide="plus"></i> New Project</button>
+                    </div>
+                    <div class="kanban-board" id="kanban-board">
+                        <div class="kanban-col" data-col="new">
+                            <div class="kanban-col-header new-h"><span class="kanban-dot new-d"></span><span>New Lead</span><span class="kb-count" id="kc-new">0</span></div>
+                            <div class="kanban-items" id="ki-new" ondragover="event.preventDefault()" ondrop="onKanbanDrop(event,'new')"></div>
+                        </div>
+                        <div class="kanban-col" data-col="progress">
+                            <div class="kanban-col-header progress-h"><span class="kanban-dot progress-d"></span><span>In Progress</span><span class="kb-count" id="kc-progress">0</span></div>
+                            <div class="kanban-items" id="ki-progress" ondragover="event.preventDefault()" ondrop="onKanbanDrop(event,'progress')"></div>
+                        </div>
+                        <div class="kanban-col" data-col="review">
+                            <div class="kanban-col-header review-h"><span class="kanban-dot review-d"></span><span>Client Review</span><span class="kb-count" id="kc-review">0</span></div>
+                            <div class="kanban-items" id="ki-review" ondragover="event.preventDefault()" ondrop="onKanbanDrop(event,'review')"></div>
+                        </div>
+                        <div class="kanban-col" data-col="done">
+                            <div class="kanban-col-header done-h"><span class="kanban-dot done-d"></span><span>Delivered</span><span class="kb-count" id="kc-done">0</span></div>
+                            <div class="kanban-items" id="ki-done" ondragover="event.preventDefault()" ondrop="onKanbanDrop(event,'done')"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: INVOICE GENERATOR -->
+                <div id="page-invoice" class="page hide">
+                    <div class="page-header">
+                        <div><h1 class="page-title">🧾 Invoice Generator</h1><p class="page-sub">Create professional invoices in seconds</p></div>
+                        <div style="display:flex;gap:10px">
+                            <button class="inv-action-btn inv-copy" onclick="copyInvoice()"><i data-lucide="copy"></i> Copy</button>
+                            <button class="inv-action-btn inv-download" onclick="downloadInvoice()"><i data-lucide="download"></i> Download</button>
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+                        <!-- Form -->
+                        <div class="g-card" style="padding:28px;display:flex;flex-direction:column;gap:16px">
+                            <h3 style="font-size:15px;font-weight:700;color:#fff;margin-bottom:4px">Invoice Details</h3>
+                            <div class="inv-field"><label>Client Name</label><input id="inv-client" type="text" placeholder="e.g. Raj Kumar" oninput="renderInvoice()"></div>
+                            <div class="inv-field"><label>Client Email / Phone</label><input id="inv-contact" type="text" placeholder="raj@email.com / 98765XXXXX" oninput="renderInvoice()"></div>
+                            <div class="inv-field"><label>Service Provided</label><input id="inv-service" type="text" placeholder="e.g. Landing Page Website" oninput="renderInvoice()"></div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                                <div class="inv-field"><label>Amount (₹)</label><input id="inv-amount" type="number" placeholder="5000" oninput="renderInvoice()"></div>
+                                <div class="inv-field"><label>Currency</label>
+                                    <select id="inv-currency" onchange="renderInvoice()">
+                                        <option value="₹">₹ INR</option>
+                                        <option value="$">$ USD</option>
+                                        <option value="€">€ EUR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                                <div class="inv-field"><label>Invoice Date</label><input id="inv-date" type="date" oninput="renderInvoice()"></div>
+                                <div class="inv-field"><label>Due Date</label><input id="inv-due" type="date" oninput="renderInvoice()"></div>
+                            </div>
+                            <div class="inv-field"><label>Payment Status</label>
+                                <select id="inv-status" onchange="renderInvoice()">
+                                    <option value="paid">✅ Paid</option>
+                                    <option value="pending" selected>⏳ Pending</option>
+                                    <option value="partial">💰 Partial</option>
+                                </select>
+                            </div>
+                            <div class="inv-field"><label>Notes (optional)</label><textarea id="inv-notes" rows="2" placeholder="e.g. 50% advance received. Balance due on delivery." oninput="renderInvoice()"></textarea></div>
+                            
+                            <div class="inv-divider-dashed" style="border-top:1.5px dashed rgba(255,255,255,0.08); margin: 8px 0;"></div>
+                            <div class="inv-field" style="flex-direction:row; align-items:center; gap:8px;">
+                                <input type="checkbox" id="inv-enable-qr" onchange="togglePaymentQRSection(); renderInvoice();" style="width:16px; height:16px; margin:0; cursor:pointer; accent-color:#10b981">
+                                <label for="inv-enable-qr" style="font-size:12px; font-weight:700; color:#fff; cursor:pointer; text-transform:none; letter-spacing:normal; display:inline-flex; align-items:center; gap:6px;">⚡ Include Payment Scan QR</label>
+                            </div>
+                            <div id="inv-qr-config-section" class="hide" style="display:flex; flex-direction:column; gap:14px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:12px; padding:16px; margin-top:4px;">
+                                <div class="inv-field">
+                                    <label>UPI ID (For Autogenerated QR)</label>
+                                    <input id="inv-upi-id" type="text" placeholder="e.g. loganathan@upi" oninput="renderInvoice()">
+                                </div>
+                                <div class="inv-field">
+                                    <label>Or Upload Custom UPI/Payment Scanner QR</label>
+                                    <div class="inv-qr-upload-box" onclick="document.getElementById('inv-qr-upload').click()" style="border: 2px dashed rgba(255,255,255,0.15); border-radius: 12px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s;">
+                                        <i class="fa-solid fa-cloud-arrow-up" style="font-size:20px; color:#9ca3af; margin-bottom:6px"></i>
+                                        <p id="inv-qr-upload-text" style="font-size:12px; color:#9ca3af; margin:0">Click to upload QR image</p>
+                                        <img id="inv-qr-upload-preview" class="hide" style="max-height:80px; margin:8px auto 0 auto; border-radius:6px; border:1px solid rgba(255,255,255,0.1)">
+                                    </div>
+                                    <input id="inv-qr-upload" type="file" accept="image/*" onchange="handleQRUpload(event)" style="display:none">
+                                    <button id="inv-qr-remove-btn" class="hide" onclick="removeUploadedQR()" style="margin-top:8px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2); color:#f87171; font-size:11px; padding:4px 8px; border-radius:6px; cursor:pointer; width:fit-content; border-style:none;">Remove QR Image</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Live Preview -->
+                        <div class="inv-preview-card" id="invoice-preview">
+                            <div class="inv-preview-header">
+                                <div>
+                                    <img src="logo.png" alt="Loganathan M" class="inv-preview-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-preview-logo" style="display:none">LM</div>
+                                    <div class="inv-preview-brand">Loganathan M</div>
+                                    <div class="inv-preview-tagline">Web Developer & Website Seller</div>
+                                    <div class="inv-preview-site">🌐 web.loganathan.site</div>
+                                </div>
+                                <div style="text-align:right">
+                                    <div class="inv-preview-title">INVOICE</div>
+                                    <div class="inv-preview-num" id="pv-num">#LM-001</div>
+                                    <div class="inv-status-badge" id="pv-status-badge">⏳ Pending</div>
+                                </div>
+                            </div>
+                            <div class="inv-divider"></div>
+                            <div class="inv-preview-to">
+                                <div class="inv-to-label">BILLED TO</div>
+                                <div class="inv-to-name" id="pv-name">Client Name</div>
+                                <div class="inv-to-detail" id="pv-contact">contact@email.com</div>
+                            </div>
+                            <div class="inv-divider"></div>
+                            <table class="inv-table">
+                                <thead><tr><th>Service</th><th>Date</th><th>Amount</th></tr></thead>
+                                <tbody><tr>
+                                    <td id="pv-service">Service Description</td>
+                                    <td id="pv-date">—</td>
+                                    <td id="pv-amount" style="font-weight:700;color:#34d399">₹0</td>
+                                </tr></tbody>
+                            </table>
+                            <div class="inv-divider"></div>
+                            <div class="inv-total-row">
+                                <span>Total Due</span>
+                                <span class="inv-total" id="pv-total">₹0</span>
+                            </div>
+                            <div class="inv-preview-due">Due: <span id="pv-due">—</span></div>
+                            <div class="inv-notes" id="pv-notes"></div>
+                            
+                            <!-- Live Payment QR Code Block -->
+                            <div id="pv-payment-qr" class="inv-payment-qr hide">
+                                <div class="inv-payment-qr-info">
+                                    <span class="inv-payment-qr-label">Payment Method</span>
+                                    <span class="inv-payment-qr-title">Scan to Pay (UPI QR)</span>
+                                    <span id="pv-qr-subtext" class="inv-payment-qr-sub">Scan the QR code with any UPI app to complete payment.</span>
+                                    <span id="pv-upi-display" style="font-family:monospace; font-size:12px; font-weight:700; color:#374151; margin-top:2px;"></span>
+                                </div>
+                                <div class="inv-payment-qr-box">
+                                    <img id="pv-qr-img" src="" alt="Payment QR Scanner" class="inv-payment-qr-img">
+                                </div>
+                            </div>
+                            
+                            <div class="inv-preview-footer">Thank you for your business! 🙏 · web.loganathan.site</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: TASK MANAGER -->
+                <div id="page-tasks" class="page hide">
+                    <div class="page-header">
+                        <div><h1 class="page-title">✅ Task Manager</h1><p class="page-sub">Stay on top of your daily work</p></div>
+                        <div class="task-stats-row">
+                            <div class="task-stat-pill"><span id="task-count-done">0</span> Done</div>
+                            <div class="task-stat-pill pending"><span id="task-count-pending">0</span> Pending</div>
+                        </div>
+                    </div>
+                    <!-- Add Task Bar -->
+                    <div class="task-add-bar">
+                        <input id="task-input" class="task-add-input" type="text" placeholder="Add a new task... (press Enter)" onkeydown="if(event.key==='Enter')addTask()">
+                        <select id="task-priority" class="task-priority-select">
+                            <option value="high">🔴 High</option>
+                            <option value="medium" selected>🟡 Medium</option>
+                            <option value="low">🟢 Low</option>
+                        </select>
+                        <button class="task-add-btn" onclick="addTask()"><i data-lucide="plus"></i> Add</button>
+                    </div>
+                    <!-- Filter Tabs -->
+                    <div class="task-filters">
+                        <button class="task-filter-btn active" onclick="filterTasks('all',this)">All</button>
+                        <button class="task-filter-btn" onclick="filterTasks('pending',this)">Pending</button>
+                        <button class="task-filter-btn" onclick="filterTasks('done',this)">Completed</button>
+                        <button class="task-filter-btn" onclick="filterTasks('high',this)">🔴 High Priority</button>
+                        <button class="task-filter-btn" style="margin-left:auto;color:#f87171;background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.2)" onclick="clearCompletedTasks()">Clear Done</button>
+                    </div>
+                    <!-- Task List -->
+                    <div class="task-list" id="task-list"></div>
+                </div>
+
+                <!-- PAGE: LOGS -->
+                <div id="page-logs" class="page hide">
+                    <div class="page-header"><h1 class="page-title">System Activity Logs</h1></div>
+                    <div class="g-card terminal-card" style="padding:0; overflow:hidden; border: 1px solid rgba(255,255,255,0.08);">
+                        <div class="terminal-header" style="background:rgba(255,255,255,0.03); padding:10px 16px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:between;">
+                            <div style="display:flex; gap:6px;">
+                                <span style="width:12px; height:12px; border-radius:50%; background:#ff5f56; display:inline-block;"></span>
+                                <span style="width:12px; height:12px; border-radius:50%; background:#ffbd2e; display:inline-block;"></span>
+                                <span style="width:12px; height:12px; border-radius:50%; background:#27c93f; display:inline-block;"></span>
+                            </div>
+                            <span style="font-family: monospace; font-size:12px; color:#9ca3af; margin:0 auto 0 16px;">syslog@adminos:~</span>
+                            <div style="display:flex; gap:8px;">
+                                <button class="term-btn" onclick="clearSystemLogs()" style="background:transparent; border:none; color:#ff453a; font-family:monospace; font-size:11px; cursor:pointer;">[Clear]</button>
+                                <button class="term-btn" onclick="downloadSystemLogs()" style="background:transparent; border:none; color:#0a84ff; font-family:monospace; font-size:11px; cursor:pointer;">[Export]</button>
+                            </div>
+                        </div>
+                        <div class="terminal-body" id="terminal-body" style="background:#050505; padding:20px; min-height:350px; max-height:450px; overflow-y:auto; font-family: monospace; font-size:13px; color:#39FF14; line-height:1.6; text-align:left;">
+                            <!-- Dynamic logs load here -->
+                        </div>
+                    </div>
+                </div>
+                <!-- PAGE: EDIT PROFILE -->
+                <div id="page-edit-profile" class="page hide">
+                    <div class="ep-header">
+                        <button class="ep-back-btn" onclick="document.querySelector('.nav-btn[data-tab=\'profile\']').click();"><i data-lucide="chevron-left"></i> Back</button>
+                        <h1 class="page-title">Edit Profile</h1>
+                    </div>
+                    
+                    <div class="ep-container">
+                        <!-- Left Column: Profile Card (Laptop) / Top (Mobile) -->
+                        <div class="ep-left-col">
+                            <div class="ep-glass-card ep-photo-card">
+                                <div class="ep-photo-wrapper">
+                                    <img src="LOGANATHAN.jpeg" class="ep-photo-preview" id="ep-photo-preview">
+                                    <div class="ep-photo-overlay" onclick="document.getElementById('ep-photo-upload').click()">
+                                        <i data-lucide="camera"></i>
+                                    </div>
+                                    <input type="file" id="ep-photo-upload" accept=".jpg,.png,.webp" hidden>
+                                </div>
+                                <h3 class="ep-user-name" id="ep-card-name">Loganathan M</h3>
+                                <p class="ep-user-role" id="ep-card-role">Founder & Web Developer</p>
+                                
+                                <div class="ep-photo-actions">
+                                    <button class="ep-btn-primary" onclick="document.getElementById('ep-photo-upload').click()"><i data-lucide="upload"></i> Change Photo</button>
+                                    <button class="ep-btn-danger" onclick="removeProfilePhoto()"><i data-lucide="trash-2"></i> Remove</button>
+                                </div>
+                                
+                                <div class="ep-stats-grid">
+                                    <div class="ep-stat-box"><p class="ep-s-val" id="ep-st-orders">—</p><p class="ep-s-label">Total Orders</p></div>
+                                    <div class="ep-stat-box"><p class="ep-s-val" id="ep-st-completed">—</p><p class="ep-s-label">Completed</p></div>
+                                    <div class="ep-stat-box"><p class="ep-s-val" id="ep-st-pending">—</p><p class="ep-s-label">Pending</p></div>
+                                    <div class="ep-stat-box"><p class="ep-s-val" id="ep-st-revenue">—</p><p class="ep-s-label">Total Revenue</p></div>
+                                    <div class="ep-stat-box"><p class="ep-s-val" id="ep-st-reviews">—</p><p class="ep-s-label">Reviews</p></div>
+                                    <div class="ep-stat-box"><p class="ep-s-val" id="ep-st-since">—</p><p class="ep-s-label">Member Since</p></div>
+                                </div>
+                            </div>
+                            
+                            <div class="ep-glass-card ep-account-actions">
+                                <button class="ep-btn-outline" onclick="handleLogout()"><i data-lucide="log-out"></i> Logout</button>
+                                <button class="ep-btn-danger-outline" onclick="handleDeleteAccount()"><i data-lucide="user-x"></i> Delete Account</button>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Settings Forms -->
+                        <div class="ep-right-col">
+                            
+                            <!-- Personal Information -->
+                            <div class="ep-glass-card">
+                                <h3 class="ep-section-title"><i data-lucide="user"></i> Personal Information</h3>
+                                <div class="ep-form-grid">
+                                    <div class="ep-form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" id="ep-fullname" class="ep-input" placeholder="Your name">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Email Address</label>
+                                        <input type="email" id="ep-email" class="ep-input" placeholder="your@email.com">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Phone Number</label>
+                                        <input type="tel" id="ep-phone" class="ep-input" placeholder="+91 XXXXXXXXXX">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Role</label>
+                                        <input type="text" id="ep-role" class="ep-input" placeholder="Your role">
+                                    </div>
+                                    <div class="ep-form-group ep-full-width">
+                                        <label>Bio / About Me</label>
+                                        <textarea class="ep-textarea" id="ep-bio" rows="3" placeholder="Tell something about yourself..."></textarea>
+                                    </div>
+                                    <div class="ep-form-group ep-full-width">
+                                        <label>Location</label>
+                                        <input type="text" id="ep-location" class="ep-input" placeholder="City, Country">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Business Details -->
+                            <div class="ep-glass-card">
+                                <h3 class="ep-section-title"><i data-lucide="briefcase"></i> Business Details</h3>
+                                <div class="ep-form-grid">
+                                    <div class="ep-form-group">
+                                        <label>Business Name</label>
+                                        <input type="text" id="ep-biz-name" class="ep-input" placeholder="Your business name">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Business Email</label>
+                                        <input type="email" id="ep-biz-email" class="ep-input" placeholder="business@email.com">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Business Phone</label>
+                                        <input type="tel" id="ep-biz-phone" class="ep-input" placeholder="+91 XXXXXXXXXX">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Website Link</label>
+                                        <input type="url" id="ep-website" class="ep-input" placeholder="https://yoursite.com">
+                                    </div>
+                                    <div class="ep-form-group ep-full-width">
+                                        <label>Business Address</label>
+                                        <input type="text" id="ep-address" class="ep-input" placeholder="City, State">
+                                    </div>
+                                </div>
+                                <h4 class="ep-sub-title">Social Media Links</h4>
+                                <div class="ep-form-grid">
+                                    <div class="ep-form-group">
+                                        <label><i data-lucide="instagram" style="width:14px"></i> Instagram</label>
+                                        <input type="url" id="ep-instagram" placeholder="https://instagram.com/..." class="ep-input">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label><i data-lucide="linkedin" style="width:14px"></i> LinkedIn</label>
+                                        <input type="url" id="ep-linkedin" placeholder="https://linkedin.com/in/..." class="ep-input">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label><i data-lucide="facebook" style="width:14px"></i> Facebook</label>
+                                        <input type="url" id="ep-facebook" placeholder="https://facebook.com/..." class="ep-input">
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label><i data-lucide="youtube" style="width:14px"></i> YouTube</label>
+                                        <input type="url" id="ep-youtube" placeholder="https://youtube.com/..." class="ep-input">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Security Settings -->
+                            <div class="ep-glass-card">
+                                <h3 class="ep-section-title"><i data-lucide="shield"></i> Security Settings</h3>
+                                <div class="ep-form-grid">
+                                    <div class="ep-form-group ep-full-width">
+                                        <label>Current Password</label>
+                                        <div class="ep-pwd-input">
+                                            <input type="password" placeholder="••••••••" class="ep-input" id="ep-cur-pwd">
+                                            <button type="button" class="ep-pwd-toggle" onclick="togglePwd('ep-cur-pwd')"><i data-lucide="eye"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>New Password</label>
+                                        <div class="ep-pwd-input">
+                                            <input type="password" placeholder="New Password" class="ep-input" id="ep-new-pwd">
+                                            <button type="button" class="ep-pwd-toggle" onclick="togglePwd('ep-new-pwd')"><i data-lucide="eye"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="ep-form-group">
+                                        <label>Confirm Password</label>
+                                        <div class="ep-pwd-input">
+                                            <input type="password" placeholder="Confirm Password" class="ep-input" id="ep-conf-pwd">
+                                            <button type="button" class="ep-pwd-toggle" onclick="togglePwd('ep-conf-pwd')"><i data-lucide="eye"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ep-toggle-row">
+                                    <div>
+                                        <p class="ep-toggle-title">Two Factor Authentication</p>
+                                        <p class="ep-toggle-desc">Add an extra layer of security to your account.</p>
+                                    </div>
+                                    <label class="ep-switch"><input type="checkbox" id="ep-2fa" checked><span class="ep-slider"></span></label>
+                                </div>
+
+                                <!-- Biometric Authentication -->
+                                <div class="bio-card" id="bio-card">
+                                    <div class="bio-icon-wrap" id="bio-icon-wrap">
+                                        <div class="bio-ring bio-ring-1"></div>
+                                        <div class="bio-ring bio-ring-2"></div>
+                                        <div class="bio-ring bio-ring-3"></div>
+                                        <div class="bio-icon" id="bio-icon">
+                                            <i data-lucide="fingerprint"></i>
+                                        </div>
+                                    </div>
+                                    <div class="bio-info">
+                                        <p class="bio-title" id="bio-title">Biometric Authentication</p>
+                                        <p class="bio-desc" id="bio-desc">Use Face ID or Fingerprint to secure your account</p>
+                                        <div class="bio-status" id="bio-status">
+                                            <span class="bio-dot"></span>
+                                            <span id="bio-status-text">Not Registered</span>
+                                        </div>
+                                    </div>
+                                    <div class="bio-actions">
+                                        <button class="bio-btn" id="bio-btn" onclick="handleBiometric()">
+                                            <i data-lucide="scan-face"></i>
+                                            <span id="bio-btn-text">Enable</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notification Settings -->
+                            <div class="ep-glass-card">
+                                <h3 class="ep-section-title"><i data-lucide="bell"></i> Notification Settings</h3>
+                                <div class="ep-toggle-list">
+                                    <div class="ep-toggle-row">
+                                        <div><p class="ep-toggle-title">New Order Notification</p></div>
+                                        <label class="ep-switch"><input type="checkbox" id="ep-notif-order" checked><span class="ep-slider"></span></label>
+                                    </div>
+                                    <div class="ep-toggle-row">
+                                        <div><p class="ep-toggle-title">New Review Notification</p></div>
+                                        <label class="ep-switch"><input type="checkbox" id="ep-notif-review" checked><span class="ep-slider"></span></label>
+                                    </div>
+                                    <div class="ep-toggle-row">
+                                        <div><p class="ep-toggle-title">Email Notification</p></div>
+                                        <label class="ep-switch"><input type="checkbox" id="ep-notif-email" checked><span class="ep-slider"></span></label>
+                                    </div>
+                                    <div class="ep-toggle-row">
+                                        <div><p class="ep-toggle-title">Push Notification</p></div>
+                                        <label class="ep-switch"><input type="checkbox" id="ep-notif-push" checked><span class="ep-slider"></span></label>
+                                    </div>
+                                    <div class="ep-toggle-row">
+                                        <div><p class="ep-toggle-title">SMS Notification</p></div>
+                                        <label class="ep-switch"><input type="checkbox" id="ep-notif-sms"><span class="ep-slider"></span></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Theme Settings -->
+                            <div class="ep-glass-card">
+                                <h3 class="ep-section-title"><i data-lucide="palette"></i> Theme Settings</h3>
+                                <div class="ep-theme-grid">
+                                    <button class="ep-theme-btn" data-theme="light"><i data-lucide="sun"></i> Light Mode</button>
+                                    <button class="ep-theme-btn active" data-theme="dark"><i data-lucide="moon"></i> Dark Mode</button>
+                                    <button class="ep-theme-btn" data-theme="auto"><i data-lucide="monitor"></i> Auto Mode</button>
+                                </div>
+                            </div>
+                            
+                            <div class="ep-spacer"></div>
+
+                            <!-- Footer -->
+                            <div class="ep-footer">
+                                <p>Created by <a href="https://loganathan.site" target="_blank">Loganathan M</a> 🚀</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sticky Bottom Save Bar (Mobile) -->
+                    <div class="ep-bottom-bar">
+                        <button class="ep-btn-reset" onclick="resetProfileChanges()">Reset</button>
+                        <button class="ep-btn-save" id="ep-save-btn" onclick="saveProfileChanges()"><i data-lucide="save" style="width:16px"></i> Save Changes</button>
+                    </div>
+                    
+                </div>
+                
+
+
+            </div>
+            
+            <div class="footer-bar">
+                Designed & Developed by <a href="https://loganathan.site" target="_blank">Loganathan M</a> 🚀
+            </div>
+        </main>
+        
+        <!-- MOBILE BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <button class="b-nav-btn active" data-tab="dashboard"><i data-lucide="layout-dashboard"></i><span>Home</span></button>
+            <button class="b-nav-btn" data-tab="orders"><i data-lucide="shopping-cart"></i><span>Orders</span><div class="b-nav-badge" id="b-nav-badge-orders">0</div></button>
+            <button class="b-nav-btn" data-tab="reviews"><i data-lucide="message-square"></i><span>Reviews</span></button>
+            <button class="b-nav-btn" data-tab="analytics"><i data-lucide="bar-chart-3"></i><span>Analytics</span></button>
+            <button class="b-nav-btn" data-tab="profile"><i data-lucide="user-circle"></i><span>Profile</span></button>
+        </nav>
+        
+        <!-- TOAST CONTAINER -->
+        <div class="toast-container" id="toast-container"></div>
+    </div>
+
+    <!-- ================= MODAL ================= -->
+    <div id="order-modal" class="modal-overlay hide">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Order Details</h3>
+                <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="order-detail-grid">
+                    <div class="detail-box"><label>Client Name</label><p id="m-client-name"></p></div>
+                    <div class="detail-box"><label>Contact</label><p id="m-client-email"></p><p style="color:#9ca3af;font-weight:400" id="m-client-phone"></p></div>
+                </div>
+                <div class="project-box">
+                    <label style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;display:block">Subject</label>
+                    <p style="color:var(--primary);font-size:18px;font-weight:700;margin-bottom:12px" id="m-subject"></p>
+                    <label style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;display:block">Project Requirements</label>
+                    <p style="color:#d1d5db;font-size:14px;line-height:1.6" id="m-content"></p>
+                </div>
+                
+                <div id="reply-section" class="reply-section">
+                    <h4>Send Quotation Reply</h4>
+                    <form id="reply-form">
+                        <div class="form-row">
+                            <input type="text" class="form-input" id="r-subject" placeholder="Re: Subject" required>
+                            <input type="text" class="form-input" id="r-price" placeholder="Price (e.g. $249)" required>
+                        </div>
+                        <textarea class="form-textarea" id="r-content" rows="4" placeholder="Detail the services, timeline, and terms..." required></textarea>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-success" onclick="markOrderCompleted()">Mark Completed</button>
+                            <button type="submit" class="btn-primary">Send Reply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- iOS Style Confirm Modal -->
+    <div id="ios-confirm" class="ios-confirm-overlay hide">
+        <div class="ios-confirm-box">
+            <div class="ios-confirm-text">
+                <h3 id="ios-confirm-title">Are you sure?</h3>
+                <p id="ios-confirm-message"></p>
+            </div>
+            <div class="ios-confirm-actions">
+                <button class="ios-confirm-btn ios-cancel" id="ios-confirm-cancel">Cancel</button>
+                <button class="ios-confirm-btn ios-ok" id="ios-confirm-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- PDF Export Loading Overlay -->
+    <div id="pdf-loading" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:99999;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+        <div style="width:52px;height:52px;border:3px solid rgba(255,255,255,0.1);border-top-color:#10b981;border-radius:50%;animation:spin 0.8s linear infinite"></div>
+        <p style="color:#fff;font-size:15px;font-weight:600">Generating PDF...</p>
+    </div>
+    <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+
+    <!-- App JS -->
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
