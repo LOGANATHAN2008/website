@@ -1,0 +1,18 @@
+{
+  "name": "Loganathan M Services",
+  "short_name": "Loganathan M",
+  "description": "Premium Website Design & Development Services by Loganathan M.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Metadata -->
+    <title>Loganathan M | Premium Website Development & Website Seller</title>
+    <meta name="description" content="Get premium, high-performance, custom websites with stunning macOS glassmorphism style UI. Professional website seller & freelance web developer Loganathan M.">
+    <meta name="keywords" content="Loganathan M, web developer, website seller, buy website, premium website development, custom web design, portfolio website developer, e-commerce developer, freelance developer, glassmorphism UI, React developer, Next.js web developer">
+    <meta name="author" content="Loganathan M">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://web.loganathan.site">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://web.loganathan.site">
+    <meta property="og:title" content="Loganathan M | Premium Website Development & Website Seller">
+    <meta property="og:description" content="Get premium, high-performance, custom websites with stunning macOS glassmorphism style UI. Professional website seller & freelance web developer Loganathan M.">
+    <meta property="og:image" content="https://web.loganathan.site/logo.png">
+    <meta property="og:site_name" content="Loganathan M Services">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://web.loganathan.site">
+    <meta name="twitter:title" content="Loganathan M | Premium Website Development & Website Seller">
+    <meta name="twitter:description" content="Get premium, high-performance, custom websites with stunning macOS glassmorphism style UI. Professional website seller & freelance web developer Loganathan M.">
+    <meta name="twitter:image" content="https://web.loganathan.site/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- Mobile App Settings (PWA) -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Loganathan M">
+    <meta name="theme-color" content="#050505">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: "#6366F1",
+                        secondary: "#8B5CF6",
+                        accent: "#EC4899",
+                        dark: {
+                            DEFAULT: "#050505",
+                            lighter: "#0F172A"
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS for Glassmorphism -->
+    <style>
+        body {
+            background-color: #050505;
+            color: #FFFFFF;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .glass {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #6366F1, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-scrolled {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+
+        /* Firebase loader */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top: 3px solid #6366F1;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite; /* Safari */
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-white relative">
+
+    <!-- Background Orbs -->
+    <div class="fixed top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-slow"></div>
+    <div class="fixed bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] -z-10 animate-float"></div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="logo.png" alt="Loganathan M Logo" class="h-10 w-auto object-contain" style="filter: drop-shadow(0 0 8px rgba(99,102,241,0.4));">
+                <span class="text-2xl font-bold text-gradient">LOGANATHAN M</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-primary transition-colors">Services</a>
+                <a href="#pricing" class="text-gray-300 hover:text-primary transition-colors">Pricing</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary transition-colors">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:inline-flex bg-primary hover:bg-secondary text-white px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                Order Now
+            </a>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white" id="mobile-menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="opacity-0 translate-x-[-50px]" id="hero-text" style="transition: all 1s ease;">
+                <div class="inline-flex items-center space-x-2 bg-dark-lighter/80 border border-white/10 rounded-full px-4 py-2 mb-6">
+                    <i data-lucide="sparkles" class="text-primary w-4 h-4"></i>
+                    <span class="text-sm font-medium text-gray-300">Premium Website Development</span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    Transform Your <br />
+                    <span class="text-gradient">Digital Vision</span> <br />
+                    Into Reality
+                </h1>
+                
+                <p class="text-lg text-gray-400 mb-8 max-w-lg">
+                    Hi, I'm Loganathan M. I build stunning, high-performance, and custom websites tailored to elevate your brand. 
+                    Experience macOS inspired modern design at affordable prices.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-semibold flex items-center space-x-2 transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
+                        <span>Order Website</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#pricing" class="glass hover:bg-white/5 text-white px-8 py-4 rounded-xl font-semibold transition-all">
+                        View Pricing
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative opacity-0 scale-90" id="hero-image" style="transition: all 1s ease; transition-delay: 0.2s;">
+                <div class="glass-card p-2 rounded-2xl border border-white/20 relative z-10 overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <!-- macOS Window -->
+                    <div class="bg-dark/80 backdrop-blur-md rounded-t-xl px-4 py-3 flex items-center border-b border-white/10">
+                        <div class="flex space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="mx-auto text-xs text-gray-400 font-medium">loganathan.site</div>
+                    </div>
+                    <!-- Content -->
+                    <div class="aspect-[4/3] bg-gradient-to-br from-dark-lighter to-dark rounded-b-xl overflow-hidden relative flex items-center justify-center">
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                        <div class="text-center z-10 p-8">
+                            <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-primary to-accent p-1 mx-auto mb-4 shadow-lg shadow-primary/20">
+                                <div class="w-full h-full bg-dark rounded-full flex items-center justify-center text-3xl font-bold text-white">L</div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Loganathan M</h3>
+                            <p class="text-primary mt-1">Freelance Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating badge -->
+                <div class="absolute -top-6 -right-6 glass p-4 rounded-xl flex items-center space-x-3 shadow-xl border-white/20 z-20 animate-float">
+                    <div class="bg-green-500/20 p-2 rounded-lg text-green-400"><i data-lucide="check-circle" class="w-6 h-6"></i></div>
+                    <div>
+                        <p class="text-sm font-bold text-white">100% Quality</p>
+                        <p class="text-xs text-gray-400">Guaranteed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">My <span class="text-gradient">Services</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Custom digital solutions designed to help your business thrive.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Cards -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">School Website</h3>
+                    <p class="text-gray-400">Modern portals for educational institutions.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="building-2"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">College Website</h3>
+                    <p class="text-gray-400">Comprehensive platforms for universities.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Business Website</h3>
+                    <p class="text-gray-400">Corporate sites to establish your brand.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="utensils"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Hotel Website</h3>
+                    <p class="text-gray-400">Elegant booking and showcase sites.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="coffee"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Restaurant Website</h3>
+                    <p class="text-gray-400">Appetizing menus and reservations.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="user-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Portfolio Website</h3>
+                    <p class="text-gray-400">Showcase your work and skills beautifully.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="landmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Political Website</h3>
+                    <p class="text-gray-400">Connect with voters and supporters.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="shopping-cart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">E-Commerce Website</h3>
+                    <p class="text-gray-400">Robust online stores to sell products.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-dark-lighter rounded-xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i data-lucide="layers"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Custom Web App</h3>
+                    <p class="text-gray-400">Tailored web applications for complex needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-dark-lighter/30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Affordable <span class="text-gradient">Pricing</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Transparent pricing with no hidden fees.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter -->
+                <div class="glass rounded-3xl p-8 border border-white/10 relative">
+                    <h3 class="text-2xl font-bold text-white mb-2">Starter Package</h3>
+                    <p class="text-gray-400 text-sm h-10">Perfect for small businesses or portfolios.</p>
+                    <div class="mb-8"><span class="text-4xl font-bold text-white">$99</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>1-3 Pages</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Mobile Responsive</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Basic SEO</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Contact Form</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>3 Days Delivery</span></li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-4 rounded-xl font-bold text-center bg-dark-lighter hover:bg-white/10 transition-all border border-white/10">Choose Plan</a>
+                </div>
+                
+                <!-- Pro -->
+                <div class="glass rounded-3xl p-8 relative border-primary/50 shadow-[0_0_30px_rgba(99,102,241,0.2)] transform md:-translate-y-4">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Professional Package</h3>
+                    <p class="text-gray-400 text-sm h-10">Ideal for growing businesses needing more.</p>
+                    <div class="mb-8"><span class="text-4xl font-bold text-white">$249</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Up to 10 Pages</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Premium Design</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Advanced SEO</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>CMS Integration</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>7 Days Delivery</span></li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-4 rounded-xl font-bold text-center bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/30 transition-all">Choose Plan</a>
+                </div>
+                
+                <!-- Premium -->
+                <div class="glass rounded-3xl p-8 border border-white/10 relative">
+                    <h3 class="text-2xl font-bold text-white mb-2">Premium Package</h3>
+                    <p class="text-gray-400 text-sm h-10">Custom web applications and e-commerce solutions.</p>
+                    <div class="mb-8"><span class="text-4xl font-bold text-white">$499+</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Unlimited Pages</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Custom Functionality</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Database Integration</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>User Authentication</span></li>
+                        <li class="flex items-center text-gray-300"><i data-lucide="check" class="text-primary mr-3 w-5 h-5"></i><span>Priority Delivery</span></li>
+                    </ul>
+                    <a href="#contact" class="block w-full py-4 rounded-xl font-bold text-center bg-dark-lighter hover:bg-white/10 transition-all border border-white/10">Choose Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="md:w-1/3">
+                    <h2 class="text-4xl font-bold mb-6">Why <span class="text-gradient">Choose Me?</span></h2>
+                    <p class="text-gray-400 mb-8 text-lg">
+                        I craft digital experiences that help your business grow. High quality at an affordable price.
+                    </p>
+                    <div class="glass p-6 rounded-2xl border-l-4 border-l-primary">
+                        <p class="italic text-gray-300">"Exceptional websites that are fast, modern, and perfectly suited for startups."</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="glass p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="p-3 bg-dark-lighter rounded-xl text-primary shrink-0"><i data-lucide="credit-card"></i></div>
+                        <div><h4 class="text-lg font-bold text-white mb-1">Affordable Price</h4><p class="text-gray-400 text-sm">Premium quality without breaking the bank.</p></div>
+                    </div>
+                    <div class="glass p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="p-3 bg-dark-lighter rounded-xl text-primary shrink-0"><i data-lucide="monitor-smartphone"></i></div>
+                        <div><h4 class="text-lg font-bold text-white mb-1">Mobile Friendly</h4><p class="text-gray-400 text-sm">Flawless experience across all devices.</p></div>
+                    </div>
+                    <div class="glass p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="p-3 bg-dark-lighter rounded-xl text-primary shrink-0"><i data-lucide="zap"></i></div>
+                        <div><h4 class="text-lg font-bold text-white mb-1">Fast Loading</h4><p class="text-gray-400 text-sm">Optimized for speed and performance.</p></div>
+                    </div>
+                    <div class="glass p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="p-3 bg-dark-lighter rounded-xl text-primary shrink-0"><i data-lucide="search"></i></div>
+                        <div><h4 class="text-lg font-bold text-white mb-1">SEO Friendly</h4><p class="text-gray-400 text-sm">Built with best practices to rank higher.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Review Section -->
+    <section id="review" class="py-24 bg-dark-lighter/10">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Leave a <span class="text-gradient">Review</span></h2>
+                    <p class="text-gray-400">Share your experience with my services.</p>
+                </div>
+                
+                <div class="glass-card rounded-3xl p-8 md:p-12 relative">
+                    <!-- Success Message -->
+                    <div id="review-success" class="hidden text-center py-16">
+                        <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="check-circle" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Review Submitted!</h3>
+                        <p class="text-gray-400">Thank you for your feedback. It has been sent for moderation.</p>
+                        <button onclick="resetReviewForm()" class="mt-8 px-6 py-2 bg-dark-lighter rounded-xl hover:bg-white/10 transition-colors">
+                            Submit Another Review
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="review-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                                <input type="text" id="review-name" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="loganathan">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Rating</label>
+                                <select id="review-rating" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none">
+                                    <option value="" disabled selected>Select a rating</option>
+                                    <option value="5" class="text-black">★★★★★ (5/5)</option>
+                                    <option value="4" class="text-black">★★★★☆ (4/5)</option>
+                                    <option value="3" class="text-black">★★★☆☆ (3/5)</option>
+                                    <option value="2" class="text-black">★★☆☆☆ (2/5)</option>
+                                    <option value="1" class="text-black">★☆☆☆☆ (1/5)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Review Message</label>
+                            <textarea id="review-content" required rows="4" class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="How was your experience?"></textarea>
+                        </div>
+                        
+                        <div id="review-error" class="hidden p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-500 text-sm"></div>
+                        
+                        <button type="submit" id="review-submit-btn" class="w-full bg-gradient-to-r from-secondary to-primary hover:opacity-90 text-white font-bold py-4 rounded-xl flex items-center justify-center space-x-2 transition-all shadow-lg shadow-primary/20">
+                            <span id="review-btn-text">Submit Review</span>
+                            <i data-lucide="star" id="review-btn-icon" class="w-5 h-5"></i>
+                            <div id="review-btn-loader" class="hidden loader"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Ready to <span class="text-gradient">Start?</span></h2>
+                    <p class="text-gray-400">Submit your website requirements below and I'll send a quotation.</p>
+                </div>
+                
+                <div class="glass-card rounded-3xl p-8 md:p-12 relative">
+                    <!-- Success Message -->
+                    <div id="order-success" class="hidden text-center py-16">
+                        <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="check-circle" class="w-10 h-10"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Order Submitted Successfully!</h3>
+                        <p class="text-gray-400">Thank you. I will review your requirements and reply shortly.</p>
+                        <button onclick="resetOrderForm()" class="mt-8 px-6 py-2 bg-dark-lighter rounded-xl hover:bg-white/10 transition-colors">
+                            Submit Another Order
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="order-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                                <input type="text" id="order-name" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="loganathan">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                                <input type="email" id="order-email" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="loga@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                                <input type="tel" id="order-phone" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+1 (234) 567-8900">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                                <select id="order-subject" required class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none">
+                                    <option value="" disabled selected>Select a subject</option>
+                                    <option value="School Website" class="text-black">School Website</option>
+                                    <option value="Business Website" class="text-black">Business Website</option>
+                                    <option value="E-Commerce" class="text-black">E-Commerce Website</option>
+                                    <option value="Portfolio" class="text-black">Portfolio Website</option>
+                                    <option value="Other" class="text-black">Other Custom Request</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Project Requirements</label>
+                            <textarea id="order-content" required rows="5" class="w-full bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none" placeholder="Describe your website needs..."></textarea>
+                        </div>
+                        
+                        <div id="order-error" class="hidden p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-500 text-sm"></div>
+                        
+                        <button type="submit" id="order-submit-btn" class="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold py-4 rounded-xl flex items-center justify-center space-x-2 transition-all shadow-lg shadow-primary/20">
+                            <span id="order-btn-text">Submit Order</span>
+                            <i data-lucide="send" id="order-btn-icon" class="w-5 h-5"></i>
+                            <div id="order-btn-loader" class="hidden loader"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-card mt-20 border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+                <div class="mb-6 md:mb-0 text-center md:text-left flex flex-col items-center md:items-start">
+                    <img src="logo.png" alt="Loganathan M Logo" class="h-10 w-auto object-contain mb-3" style="filter: drop-shadow(0 0 8px rgba(99,102,241,0.4));">
+                    <p class="text-gray-400">Freelance Web Developer & Website Seller</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://www.instagram.com/kutty_loga_" target="_blank" class="p-3 bg-dark-lighter rounded-full hover:bg-primary hover:text-white transition-colors">
+                        <i data-lucide="instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/loganathan-site" target="_blank" class="p-3 bg-dark-lighter rounded-full hover:bg-secondary hover:text-white transition-colors">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://loganathan.site" target="_blank" class="p-3 bg-dark-lighter rounded-full hover:bg-accent hover:text-white transition-colors">
+                        <i data-lucide="globe"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>Created by <a href="https://loganathan.site" target="_blank" class="text-primary hover:underline">Loganathan M</a></p>
+                <p class="mt-2 md:mt-0 italic text-gray-400">"Designed & Developed with Passion by Loganathan M"</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK Setup -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA4sz93sOlFGXQYbPaQn5FrErs3t9ihD8A",
+            authDomain: "website-adcb1.firebaseapp.com",
+            projectId: "website-adcb1",
+            storageBucket: "website-adcb1.firebasestorage.app",
+            messagingSenderId: "410424437804",
+            appId: "1:410424437804:web:615035eca8182687fdf589",
+            measurementId: "G-9FRNGWJKS5"
+        };
+
+        let app, db;
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            console.log("Firebase initialized");
+        } catch (e) {
+            console.error("Firebase config error (replace keys):", e);
+        }
+
+        // --- Maintenance Mode Check ---
+        if (db) {
+            onSnapshot(doc(db, "settings", "config"), (snap) => {
+                const isUnderMaintenance = snap.exists() && snap.data().maintenanceMode === true;
+                if (isUnderMaintenance) {
+                    window.location.href = "maintenance.html";
+                }
+            });
+            // Legacy support
+            onSnapshot(doc(db, "services", "maintenance"), (snap) => {
+                const isUnderMaintenance = snap.exists() && snap.data().enabled === true;
+                if (isUnderMaintenance) {
+                    window.location.href = "maintenance.html";
+                }
+            });
+        }
+
+        // --- Order Form Logic ---
+        const orderForm = document.getElementById('order-form');
+        
+        orderForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI elements
+            const btnText = document.getElementById('order-btn-text');
+            const btnIcon = document.getElementById('order-btn-icon');
+            const btnLoader = document.getElementById('order-btn-loader');
+            const errorDiv = document.getElementById('order-error');
+            
+            // Get values
+            const data = {
+                name: document.getElementById('order-name').value,
+                email: document.getElementById('order-email').value,
+                phone: document.getElementById('order-phone').value,
+                subject: document.getElementById('order-subject').value,
+                content: document.getElementById('order-content').value,
+                status: "pending",
+                createdAt: serverTimestamp()
+            };
+
+            // Loading state
+            btnText.style.display = 'none';
+            btnIcon.style.display = 'none';
+            btnLoader.style.display = 'block';
+            errorDiv.classList.add('hidden');
+
+            try {
+                if(!db) throw new Error("Firebase not configured! Add your API keys in the index.html file.");
+                await addDoc(collection(db, "orders"), data);
+                
+                // Show success
+                document.getElementById('order-form').classList.add('hidden');
+                document.getElementById('order-success').classList.remove('hidden');
+            } catch (error) {
+                errorDiv.textContent = error.message;
+                errorDiv.classList.remove('hidden');
+            } finally {
+                // Reset loading state
+                btnText.style.display = 'block';
+                btnIcon.style.display = 'block';
+                btnLoader.style.display = 'none';
+            }
+        });
+
+        // Make reset function globally available
+        // Make reset function globally available
+        window.resetOrderForm = () => {
+            document.getElementById('order-form').reset();
+            document.getElementById('order-success').classList.add('hidden');
+            document.getElementById('order-form').classList.remove('hidden');
+        };
+
+        // --- Review Form Logic ---
+        const reviewForm = document.getElementById('review-form');
+        
+        reviewForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btnText = document.getElementById('review-btn-text');
+            const btnIcon = document.getElementById('review-btn-icon');
+            const btnLoader = document.getElementById('review-btn-loader');
+            const errorDiv = document.getElementById('review-error');
+            
+            const data = {
+                name: document.getElementById('review-name').value,
+                rating: parseInt(document.getElementById('review-rating').value),
+                message: document.getElementById('review-content').value,
+                approved: false,
+                createdAt: serverTimestamp()
+            };
+
+            btnText.style.display = 'none';
+            btnIcon.style.display = 'none';
+            btnLoader.style.display = 'block';
+            errorDiv.classList.add('hidden');
+
+            try {
+                if(!db) throw new Error("Firebase not configured!");
+                await addDoc(collection(db, "reviews"), data);
+                
+                document.getElementById('review-form').classList.add('hidden');
+                document.getElementById('review-success').classList.remove('hidden');
+            } catch (error) {
+                errorDiv.textContent = error.message;
+                errorDiv.classList.remove('hidden');
+            } finally {
+                btnText.style.display = 'block';
+                btnIcon.style.display = 'block';
+                btnLoader.style.display = 'none';
+            }
+        });
+
+        window.resetReviewForm = () => {
+            document.getElementById('review-form').reset();
+            document.getElementById('review-success').classList.add('hidden');
+            document.getElementById('review-form').classList.remove('hidden');
+        };
+    </script>
+
+    <!-- General UI Interactions -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Simple Hero Animation Trigger
+        setTimeout(() => {
+            document.getElementById('hero-text').style.opacity = '1';
+            document.getElementById('hero-text').style.transform = 'translateX(0)';
+            
+            document.getElementById('hero-image').style.opacity = '1';
+            document.getElementById('hero-image').style.transform = 'scale(1)';
+        }, 100);
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered!', reg))
+                    .catch(err => console.log('Service Worker registration failed: ', err));
+            });
+        }
+    </script>
+</body>
+</html>
